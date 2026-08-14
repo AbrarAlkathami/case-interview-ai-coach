@@ -1,3 +1,6 @@
 /path
 .vscode
 .env
+orm.db
+__pycache__/
+*.pyc
