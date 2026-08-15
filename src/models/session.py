@@ -10,6 +10,8 @@ from ..db.base import Base
 if TYPE_CHECKING:
     from .user import User
     from .message import Message
+    from .case import Case
+    from .evaluation import Evaluation
 
 
 class Session(Base):
@@ -24,3 +26,5 @@ class Session(Base):
 
     user: Mapped["User"] = relationship(back_populates="sessions")
     messages: Mapped[list["Message"]] = relationship( back_populates="session")
+    case: Mapped["Case"]  = relationship(back_populates="sessions")
+    evaluation: Mapped["Evaluation"] = relationship(back_populates="session")
