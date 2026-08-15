@@ -1,5 +1,5 @@
 from pydantic import BaseModel, ConfigDict
-from typing import Any
+from typing import Any, Optional
 
 
 class CaseCreate(BaseModel):
@@ -23,8 +23,8 @@ class CaseResponse(BaseModel):
 
 
 class CaseUpdate(BaseModel):
-    case_name: str | None = None
-    case_type: str | None = None
-    difficulty: str | None = None
-    case_content: str | None = None
-    structured_metadata: dict[str, Any] | None = None
+    case_name: Optional[str] = None
+    case_type: Optional[str]  = None
+    difficulty: Optional[str]  = None
+    case_content: Optional[str]  = None
+    structured_metadata: Optional[dict[str, Any]] = None

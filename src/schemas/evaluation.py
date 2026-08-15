@@ -1,6 +1,6 @@
 from decimal import Decimal
-
 from pydantic import BaseModel, ConfigDict
+from typing import Optional
 
 
 class EvaluationCreate(BaseModel):
@@ -31,11 +31,11 @@ class EvaluationResponse(BaseModel):
 
 
 class EvaluationUpdate(BaseModel):
-    overall_score: Decimal | None = None
-    structure_score: Decimal | None = None
-    math_score: Decimal | None = None
-    business_reasoning_score: Decimal | None = None
-    communication_score: Decimal | None = None
-    strengths: str | None = None
-    weaknesses: str | None = None
-    feedback: str | None = None
+    overall_score: Optional[Decimal] = None
+    structure_score: Optional[Decimal] = None
+    math_score: Optional[Decimal] = None
+    business_reasoning_score: Optional[Decimal] = None
+    communication_score: Optional[Decimal] = None
+    strengths: Optional[str] = None
+    weaknesses: Optional[str] = None
+    feedback: Optional[str] = None
