@@ -1,9 +1,15 @@
 from datetime import datetime
-from pydantic import BaseModel, EmailStr, Field, ConfigDict
+from typing import Optional
+from pydantic import BaseModel, EmailStr, Field, ConfigDict, field_validator
 
 class UserBase(BaseModel):
     name: str
     email: EmailStr
+
+    @field_validator("email")
+    @classmethod
+    def normalize_email(cls, value):
+        return str(value).lower()
 
 
 class UserCreate(UserBase):
@@ -18,11 +24,24 @@ class UserResponse(UserBase):
 
 
 class UserUpdate(BaseModel):
-    name: str | None = None
-    email: EmailStr | None = None
-    password: str | None = Field(default=None, min_length=8)
+    name: Optional[str] = None
+    email: Optional[EmailStr] = None
+    password: Optional[str] = Field(default=None, min_length=8)
 
 
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class AuthResponse(BaseModel):
+    access_token: str
+    token_type: str
+    user: UserResponse
+
+class TokenData(BaseModel):
+    email: Optional[str] = None
