@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 
-from ..schemas.user import UserCreate, UserLogin
+from ..schemas.user import UserCreate
+from ..schemas.auth import UserLogin
 from ..utils.security import hash_pwd, check_pwd
 from ..crud.user import user_crud
 from ..models.user import User
@@ -24,7 +25,7 @@ class AuthService:
         
 
     async def login(self, db: Session, user_data: UserLogin) -> User | None:
-        
+
         user = user_crud.get_by_email(db, user_data.email)
 
         if not user:

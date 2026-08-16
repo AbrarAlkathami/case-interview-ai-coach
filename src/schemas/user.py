@@ -11,7 +11,6 @@ class UserBase(BaseModel):
     def normalize_email(cls, value):
         return str(value).lower()
 
-
 class UserCreate(UserBase):
     password: str = Field(min_length=8)
 
@@ -27,21 +26,3 @@ class UserUpdate(BaseModel):
     name: Optional[str] = None
     email: Optional[EmailStr] = None
     password: Optional[str] = Field(default=None, min_length=8)
-
-
-class UserLogin(BaseModel):
-    email: EmailStr
-    password: str
-
-
-class Token(BaseModel):
-    access_token: str
-    token_type: str
-
-class AuthResponse(BaseModel):
-    access_token: str
-    token_type: str
-    user: UserResponse
-
-class TokenData(BaseModel):
-    email: Optional[str] = None
